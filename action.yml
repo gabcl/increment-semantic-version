@@ -1,5 +1,5 @@
 name: Increment Semantic Version
-description: Bump a given semantic version by a release type ( major | minor | patch ) and add a possible postfix ( alpha | beta | rc )
+description: Bump a given semantic version by a release type ( major | minor | patch )
 author: Christian Dräger
 branding:
   icon: 'tag'
@@ -8,15 +8,15 @@ inputs:
   current-version:
     description: 'The current semantic version you want to increment'
     required: true
-  version-fragment:
-    description: 'The versions fragment you want to increment. possible options are [ major | feature | bug | alpha | beta | rc ]'
+  release-type:
+    description: 'The release type. Possible options are [ major | feature | fix | refactor | docs ]'
     required: true
 outputs:
-  next-version:
-    description: 'The incremented version'
+  new-version:
+    description: 'The new incremented version'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.current-version }}
-    - ${{ inputs.version-fragment }}
+    - ${{ inputs.release-type }}
